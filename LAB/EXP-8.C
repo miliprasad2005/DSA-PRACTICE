@@ -40,9 +40,10 @@ void display()
     }
     printf("'");
 }
-void main()
+int  main()
 {
  
     int_to_str();
     display();
+    return 0;
 }
