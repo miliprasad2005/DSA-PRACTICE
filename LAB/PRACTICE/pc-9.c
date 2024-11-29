@@ -36,6 +36,26 @@ void preorder(struct node *root)
     preorder(root->left);
     preorder(root->right);
 }
+void Inorder(struct node *root)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    Inorder(root->left);
+    printf("%d",root->data);
+    Inorder(root->right);
+}
+void postorder(struct node *root)
+{
+    if(root==NULL)
+    {
+        return ;
+    }
+    postorder(root->left);
+    postorder(root->right);
+    printf("%d",root->data);
+}
 void display(struct node *root,int space)
 {
     if(root==NULL)

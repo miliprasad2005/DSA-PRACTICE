@@ -1,60 +1,88 @@
 #include<stdio.h>
 #include<stdlib.h>
-typedef struct  node{
+#define max 5
+struct node
+{
     int data;
-    struct node* next;
-}node;
-
-node* createnode(int data_){
-    node* newnode = (node*)malloc(sizeof(node));
-    if(!newnode){
-        printf("Memory Nahi mili");
-        exit(0);
+    struct node *next;
+};
+struct node *head=NULL,*temp;
+void createnode()
+{
+    struct node *newnode=(struct node *)malloc(sizeof(struct node));
+    if(newnode==NULL)
+    {
+        printf("memory not allocated\n");
+        return;
+    }
+        printf("enter data:");
+        scanf("%d",&newnode->data);
+        newnode->next=NULL;
+    if(head==NULL)
+    {
+        head=temp=newnode;
     }
     else{
-        newnode->data = data_;
-        newnode->next = NULL;
-        return newnode;
+       temp->next=newnode;
+       temp=newnode;
     }
+    temp->next=head;
 }
-
-void insertNode(node** head,int data_){
-    node* newnode = createnode(data_);
-    newnode->next = *head;
-    *head = newnode;
-}
-
-int cycle(node* head){
+int cycle()
+{
     
-    if(head==NULL || head->next==NULL){
+    if(head==NULL||head->next==NULL)
+    {
         return 0;
     }
     else{
-        node *fast=head;
-        node *slow = head;
-        while(fast!=NULL && fast->next !=NULL){
-            slow = slow->next;
-            fast = fast->next->next;
-            if(slow==fast){
+        
+        {
+         struct node *fast=head,*slow=head;
+        while (fast!=NULL&&fast->next!=NULL)
+           {
+             slow=slow->next;
+            fast=fast->next->next;
+            if(slow==fast)
+            {
                 return 1;
             }
+            
         }
-        return 0;
-    }
+    }}
+    return 0;
 }
-
-
-int main(){
-    node* head = NULL;
-    insertNode(&head,10);
-    insertNode(&head,20);
-    insertNode(&head,40);
-    head->next->next=head;
-    if(cycle(head)){
-        printf("True");
+void display()
+{
+    temp=head;
+    printf("elements are:");
+    while (temp->next!=head)
+    {
+        printf("%d ",temp->data);
+        temp=temp->next;
     }
-    else{
-        printf("False");
+    printf("%d ",temp->data);
+    
+}
+int main()
+{
+    int ch;
+    while (ch)
+    {
+        createnode();
+        printf("enter your choice(0/1):");
+        scanf("%d",&ch);
     }
-
+    
+    display();
+    if(cycle())
+    {
+        printf("\nIt cyclic");
+    }
+    else
+    {
+        printf(" \nIt is not cyclic\n");
+    }
+    
+    return 0;
 }
