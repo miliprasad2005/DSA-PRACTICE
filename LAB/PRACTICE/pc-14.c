@@ -14,25 +14,16 @@ void create() {
     }
 }
 
-void BFS(int n) {
-    int queue[MAX], visited[MAX] = {0};
-    int front = -1, rear = -1;
-
-    queue[++rear] = n;
-    visited[n] = 1;
-
-    printf("BFS Traversal: ");
-    while (front < rear) {
-        int curr = queue[++front];  
-        printf("%d ", curr);
-        for (int i = 0; i < MAX; i++) {
-            if (arr[curr][i] == 1 && visited[i]!=1) {
-                queue[++rear] = i; 
-                visited[i] = 1;
-            }
-        }
+void DFS(int n) {
+    int i,j,top=-1;
+    int visited[MAX]={0},stack[MAX];
+    stack[++top]=n;
+    visited[n]=1;
+    while (top!=-1)
+    {
+        
     }
-    printf("\n");
+    
 }
 
 void display() {
@@ -47,7 +38,7 @@ void display() {
 
 int main() {
     create();
-    BFS(2);
+    DFS(2);
     display();
     return 0;
 }
